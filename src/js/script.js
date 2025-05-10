@@ -1,4 +1,5 @@
 let totalCadastros = 0;
+let vinhosEstoqueBaixo = 0;
 
 let nomeVinho = prompt("Digite o nome do vinho:");
 if (nomeVinho === null || nomeVinho === "" || nomeVinho === " ") {
@@ -62,12 +63,16 @@ if (parseInt(quantidadeEstoque) < 5) {
 
 // verificação de estoque
 function checkStock(stock) {
-	if (isNull(stock)) {
-		stock < 5
-			? console.log(`ESTOQUE BAIXO: ${stock}`)
-			: console.log(`Estoque atual: ${stock}`);
+	if (stock !== null && stock !== "" && !isNaN(stock)) {
+		if (stock < 5) {
+			console.log(`ESTOQUE BAIXO: ${stock}`);
+			vinhosEstoqueBaixo++;
+		} else {
+			console.log(`Estoque atual: ${stock}`);
+		}
 	}
 }
+
 
 // Contabiliza o cadastro
 totalCadastros++;
@@ -75,3 +80,4 @@ totalCadastros++;
 // Exibe totais
 alert("Cadastro finalizado!");
 alert("Total de cadastros realizados: " + totalCadastros);
+
