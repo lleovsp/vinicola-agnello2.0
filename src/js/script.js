@@ -1,4 +1,4 @@
-var nomeVinho = prompt("Digite o nome do vinho:");
+let nomeVinho = prompt("Digite o nome do vinho:");
 if (nomeVinho === null || nomeVinho === "" || nomeVinho === " ") {
 	alert("digite um valor não vazio para o vinho");
 	nomeVinho = prompt("Digite o nome do vinho");
@@ -9,7 +9,7 @@ if (nomeVinho === null || nomeVinho === "" || nomeVinho === " ") {
 	console.log("Nome do vinho: " + nomeVinho);
 }
 
-var tipoVinho = prompt(
+let tipoVinho = prompt(
 	"Digite o tipo do vinho (Tinto, Branco ou Rosé):"
 ).toLowerCase();
 if (tipoVinho != "tinto" || tipoVinho != "branco" || tipoVinho != "rosé") {
@@ -22,7 +22,7 @@ if (tipoVinho != "tinto" || tipoVinho != "branco" || tipoVinho != "rosé") {
 	console.log("Tipo do vinho: " + tipoVinho);
 }
 
-var safraVinho = prompt("Digite o ano da safra do vinho:");
+let safraVinho = prompt("Digite o ano da safra do vinho:");
 if (safraVinho === null || safraVinho === "" || safraVinho === " ") {
 	alert("Digite um valor não vazio para o ano");
 	safraVinho = prompt("Digite o ano da safra do vinho:");
@@ -35,7 +35,7 @@ if (safraVinho === null || safraVinho === "" || safraVinho === " ") {
 	console.log("Ano da Safra: " + safraVinho);
 }
 
-var quantidadeEstoque = prompt("Digite a quantidade em estoque do vinho:");
+let quantidadeEstoque = prompt("Digite a quantidade em estoque do vinho:");
 //validação de entrada de dados
 if (
 	quantidadeEstoque === null ||
@@ -56,4 +56,13 @@ if (
 // verificação de estoque
 if (parseInt(quantidadeEstoque) < 5) {
 	console.log("ESTOQUE BAIXO");
+}
+
+// verificação de estoque
+function checkStock(stock) {
+	if (isNull(stock)) {
+		stock < 5
+			? console.log(`ESTOQUE BAIXO: ${stock}`)
+			: console.log(`Estoque atual: ${stock}`);
+	}
 }
