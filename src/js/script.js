@@ -1,3 +1,5 @@
+let totalCadastros = 0;
+
 let nomeVinho = prompt("Digite o nome do vinho:");
 if (nomeVinho === null || nomeVinho === "" || nomeVinho === " ") {
 	alert("digite um valor não vazio para o vinho");
@@ -66,3 +68,10 @@ function checkStock(stock) {
 			: console.log(`Estoque atual: ${stock}`);
 	}
 }
+
+// Contabiliza o cadastro
+totalCadastros++;
+
+// Exibe totais
+alert("Cadastro finalizado!");
+alert("Total de cadastros realizados: " + totalCadastros);
