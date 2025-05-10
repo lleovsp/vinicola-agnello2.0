@@ -1,5 +1,6 @@
 let totalCadastros = 0;
 let vinhosEstoqueBaixo = 0;
+let idadeVinho = 0;
 
 function nameWine() {
 	if (nomeVinho === null || nomeVinho === "" || nomeVinho === " ") {
@@ -54,6 +55,20 @@ function stockWine() {
 		console.log("estoque: " + quantidadeEstoque);
 	}
 }
+function ageWine() {
+	idadeVinho = 2025 - safraVinho;
+	if (idadeVinho <= 3) {
+		alert("Verifique a classificação da idade do vinho no console");
+		console.log("Este é um Vinho Jovem: " + idadeVinho + " anos");
+	}
+	else if (idadeVinho > 3 && idadeVinho <= 15) {
+		alert("Verifique a classificação da idade do vinho no console");
+		console.log("Este é um Vinho Amadurecido : " + idadeVinho + " anos");
+	} else {
+		alert("Verifique a classificação da idade do vinho no console");
+		console.log("Este é um Vinho Antigo : " + idadeVinho + " anos");
+	}
+}
 
 // Cadastro do Produto
 
@@ -69,6 +84,7 @@ typeWine();
 // Solicita a Safra do Vinho cadastrado e verifica se a entrada dos dados é válida
 let safraVinho = prompt("Digite o ano da safra do vinho:");
 yearWine();
+ageWine();
 
 // Solicita a Quantidade de Vinho cadastrada no Estoque e verifica se a entrada dos dados é válida
 let quantidadeEstoque = prompt("Digite a quantidade em estoque do vinho:");
