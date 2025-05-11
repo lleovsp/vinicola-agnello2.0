@@ -1,6 +1,36 @@
 let totalCadastros = 0;
 let vinhosEstoqueBaixo = 0;
 let idadeVinho = 0;
+let repeticao = true;
+let nomeVinho = "";
+let tipoVinho = "";
+let safraVinho = "";
+let quantidadeEstoque = "";
+
+
+function wineResgistry() {
+	while (repeticao){
+		nomeVinho = prompt("Digite o nome do vinho:");
+		nameWine();
+
+		tipoVinho = prompt("Digite o tipo do vinho (Tinto, Branco ou Rosé):").toLowerCase();
+		typeWine();
+
+		safraVinho = parseInt(prompt("Digite o ano da safra do vinho:"));
+		yearWine();
+		ageWine();
+
+		quantidadeEstoque = prompt("Digite a quantidade em estoque do vinho:");
+		stockWine();
+
+		let rep = prompt("Deseja cadastrar um novo vinho?").toUpperCase();
+		if (rep != "SIM"){
+			repeticao = false;
+		}
+
+		totalCadastros++;
+	}
+}
 
 function nameWine() {
 	if (nomeVinho === null || nomeVinho === "" || nomeVinho === " ") {
@@ -27,8 +57,8 @@ function typeWine() {
 }
 }
 function yearWine() {
-	if (safraVinho === null || safraVinho === "" || safraVinho === " ") {
-		alert("Digite um valor não vazio para o ano");
+	if (safraVinho === null || safraVinho === "" || isNaN(safraVinho)) {
+		alert("Digite um valor não vazio ou string para o ano");
 		safraVinho = prompt("Digite o ano da safra do vinho:");
 		alert("ano da safra cadastrado com sucesso! Veja os detalhes no console");
 		console.log("ano da safra: " + safraVinho);
@@ -70,26 +100,6 @@ function ageWine() {
 	}
 }
 
-// Cadastro do Produto
-
-// Solicita o Nome do vinho ao usuário e verifica se a entrada dos dados é válida
-let nomeVinho = prompt("Digite o nome do vinho:");
-nameWine();
-
-// Solicita o Tipo de Vinho cadastrado e verifica se a entrada dos dados é válida
-let tipoVinho = prompt("Digite o tipo do vinho (Tinto, Branco ou Rosé):").toLowerCase();
-typeWine();
-
-
-// Solicita a Safra do Vinho cadastrado e verifica se a entrada dos dados é válida
-let safraVinho = prompt("Digite o ano da safra do vinho:");
-yearWine();
-ageWine();
-
-// Solicita a Quantidade de Vinho cadastrada no Estoque e verifica se a entrada dos dados é válida
-let quantidadeEstoque = prompt("Digite a quantidade em estoque do vinho:");
-stockWine();
-
 
 // verificação de estoque
 if (parseInt(quantidadeEstoque) < 5) {
@@ -109,7 +119,7 @@ function checkStock(stock) {
 
 
 // Contabiliza o cadastro
-totalCadastros++;
+wineResgistry();
 
 // Exibe totais
 alert("Cadastro finalizado!");
