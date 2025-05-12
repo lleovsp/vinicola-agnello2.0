@@ -147,3 +147,24 @@ function checkStock(stock) {
 		return 0;
 	}
 }
+function isNull(data) {
+	if (data === null || data === undefined) {
+		return true;
+	} else if (data.trim() === "") {
+		return true;
+	} else {
+		return false;
+	}
+}
+function oldestWine(currentOldest, currentWine) {
+	if (currentOldest === "") {
+		return currentWine;
+	}
+	currentOldest = parseInt(currentOldest);
+	currentWine = parseInt(currentWine);
+	if (currentWine < currentOldest) {
+		return currentWine;
+	} else {
+		return currentOldest;
+	}
+}
