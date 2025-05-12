@@ -1,7 +1,7 @@
-# Checkpoint Vinharia - Agnelo
+# Checkpoint Vinharia - Agnelo 2.0
 
 **Descrição:**
-**Este projeto consiste no desenvolvimento de um site/sistema para uma vinícola, com foco na gestão de informações relacionadas aos vinhos produzidos e comercializados. O sistema permitirá o cadastro de vinhos, com dados como safra, estoque, tipo e nome do vinho.**
+**Refatoração do código para melhor aplicação da lógica, visando melhorar o sistema como um todo**
 
 **Tecnologias e Funcionalidades:**
 
@@ -15,11 +15,14 @@
 
 **O usuário pode escolher o vinho a ser comprado por or tipo, safra ou nome, facilitando a busca pelo produto desejado.**
 
+**Uso de funções e Estruturas de repetição para gerenciar a cadeia de execução do código**
 
 # Integrantes do projeto
 
-**Gabriel Carvalho Simões da Silva** **RM563169** <br>
-**João Gabriel C. M. Santos** **RM563953** <br>
-**Leonardo Vinicius de Souza** **RM562299** <br>
-**Miguel dos Santos de Andrade** **RM563516** <br>
-**Pedro Henrique da Silva** **RM566235** <br>
+<span style="color:green;">
+    **Gabriel Carvalho Simões da Silva** **RM563169** <br>
+    **João Gabriel C. M. Santos** **RM563953** <br>
+    **Leonardo Vinicius de Souza** **RM562299** <br>
+    **Miguel dos Santos de Andrade** **RM563516** <br>
+    **Pedro Henrique da Silva** **RM566235** <br>
+</span >
