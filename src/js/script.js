@@ -18,7 +18,7 @@ while (true) {
 	// Solicita a Safra do Vinho cadastrado e verifica se a entrada dos dados é válida
 	let safraVinho = prompt("Digite o ano da safra do vinho:");
 	yearWine(safraVinho);
-	ageWine(safraVinho);
+	
 
 	// Solicita a Quantidade de Vinho cadastrada no Estoque e verifica se a entrada dos dados é válida
 	let quantidadeEstoque = prompt("Digite a quantidade em estoque do vinho:");
@@ -32,16 +32,16 @@ while (true) {
 
 	// Verificação de saída
 	while (true) {
-		controller = prompt("Deseja continuar[s/n]?");
+		controller = prompt("Deseja continuar[s/n]?").toUpperCase();
 
-		if (controller === "s" || controller === "n") {
+		if (controller === "S" || controller === "N" || controller === "SIM" || controller === "NAO") {
 			console.log(" ");
 			break;
 		} else {
 			msgAlerLog("Digite uma opção válida");
 		}
 	}
-	if (controller === "n") {
+	if (controller === "N" || controller === "NAO") {
 		break;
 	}
 }
@@ -82,21 +82,23 @@ function typeWine(type) {
 			break;
 		} else {
 			msgAlerLog(`${type} não é uma das opcões de vinho`);
-			type = prompt("Digite o tipo do vinho (Tinto, Branco ou Rosé): ");
+			type = prompt("Digite o tipo do vinho (Tinto, Branco ou Rosé): ").toLowerCase();
 		}
 	}
 }
 function yearWine(year) {
 	let regex = /^[0-9]+$/;
 	while (true) {
-		if (isNull(year) || !regex.test(year)) {
+		if (isNull(year) || !regex.test(year) || year > 2025) {
 			msgAlerLog("Digite um valor válido para o ano");
 			year = prompt("Digite o ano da safra do vinho:");
 		} else {
 			msgAlerLog(
 				"Ano da Safra do vinho cadastrado com sucesso! Veja os detalhes no console",
 				"Ano da Safra: " + year
+				
 			);
+			ageWine(year);
 			break;
 		}
 	}
