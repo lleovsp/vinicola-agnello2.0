@@ -87,8 +87,9 @@ function typeWine(type) {
 	}
 }
 function yearWine(year) {
+	let regex = /^[0-9]+$/;
 	while (true) {
-		if (isNull(year) || parseInt(year) === NaN) {
+		if (isNull(year) || !regex.test(year)) {
 			msgAlerLog("Digite um valor válido para o ano");
 			year = prompt("Digite o ano da safra do vinho:");
 		} else {
@@ -101,7 +102,7 @@ function yearWine(year) {
 	}
 }
 function ageWine(year) {
-	let age = 2025 - year;
+	let age = 2025 - parseInt(year);
 	let msgAlert;
 	let msgConsole;
 	if (age <= 3) {
@@ -117,8 +118,9 @@ function ageWine(year) {
 	msgAlerLog(msgAlert, msgConsole);
 }
 function stockWine(stock) {
+	let regex = /^[0-9]+$/;
 	while (true) {
-		if (isNull(stock) || parseInt(stock) === NaN) {
+		if (isNull(stock) || !regex.test(stock)) {
 			msgAlerLog("Digite um valor válido para a quantidade de estoque");
 			stock = prompt("Digite o estoque do vinho:");
 		} else {
