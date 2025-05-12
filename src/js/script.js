@@ -1,117 +1,149 @@
 let totalCadastros = 0;
 let vinhosEstoqueBaixo = 0;
-let idadeVinho = 0;
-
-function nameWine() {
-	if (nomeVinho === null || nomeVinho === "" || nomeVinho === " ") {
-		alert("digite um valor não vazio para o vinho");
-		nomeVinho = prompt("Digite o nome do vinho");
-		alert("Nome cadastrado com sucesso! Veja os detalhes no console");
-		console.log("Nome do vinho: " + nomeVinho);
-} 
-	else {
-		alert("Nome cadastrado com sucesso! Veja os detalhes no console");
-		console.log("Nome do vinho: " + nomeVinho);
-}
-}
-function typeWine() { 
-	if (tipoVinho != "tinto" || tipoVinho != "branco" || tipoVinho != "rosé") {
-		alert(`${tipoVinho} não é uma das opcões de vinho`);
-		tipoVinho = prompt("Digite o tipo do vinho (Tinto, Branco ou Rosé):");
-		alert("Tipo do vinho cadastrado com sucesso! Veja os detalhes no console");
-		console.log("Tipo do vinho: " + tipoVinho);
-} 
-	else {
-		alert("tipo do vinho cadastrado com sucesso! Veja os detalhes no console");
-		console.log("Tipo do vinho: " + tipoVinho);
-}
-}
-function yearWine() {
-	if (safraVinho === null || safraVinho === "" || safraVinho === " ") {
-		alert("Digite um valor não vazio para o ano");
-		safraVinho = prompt("Digite o ano da safra do vinho:");
-		alert("ano da safra cadastrado com sucesso! Veja os detalhes no console");
-		console.log("ano da safra: " + safraVinho);
-} 
-	else {
-		alert("Ano da Safra do vinho cadastrado com sucesso! Veja os detalhes no console");
-		console.log("Ano da Safra: " + safraVinho);
-}
-}
-function stockWine() {
-	if (
-		quantidadeEstoque === null ||
-		quantidadeEstoque === "" ||
-		quantidadeEstoque === " "
-	) {
-		alert("Digite um valor não vazio para a quantidade de estoque");
-		quantidadeEstoque = prompt("Digite o estoque do vinho:");
-		alert("Quantidade cadastrada com sucesso!");
-		console.log("estoque: " + quantidadeEstoque);
-	} else {
-		alert(
-			"Quantidade cadastrada com sucesso! Verificar o Console para classificação e detalhes da quantidade de estoque"
-		);
-		console.log("estoque: " + quantidadeEstoque);
-	}
-}
-function ageWine() {
-	idadeVinho = 2025 - safraVinho;
-	if (idadeVinho <= 3) {
-		alert("Verifique a classificação da idade do vinho no console");
-		console.log("Este é um Vinho Jovem: " + idadeVinho + " anos");
-	}
-	else if (idadeVinho > 3 && idadeVinho <= 15) {
-		alert("Verifique a classificação da idade do vinho no console");
-		console.log("Este é um Vinho Amadurecido : " + idadeVinho + " anos");
-	} else {
-		alert("Verifique a classificação da idade do vinho no console");
-		console.log("Este é um Vinho Antigo : " + idadeVinho + " anos");
-	}
-}
+let controller = "s";
+let vinhoMaisVelho = "";
 
 // Cadastro do Produto
+while (true) {
+	// Solicita o Nome do vinho ao usuário e verifica se a entrada dos dados é válida
+	let nomeVinho = prompt("Digite o nome do vinho:");
+	nameWine(nomeVinho);
 
-// Solicita o Nome do vinho ao usuário e verifica se a entrada dos dados é válida
-let nomeVinho = prompt("Digite o nome do vinho:");
-nameWine();
+	// Solicita o Tipo de Vinho cadastrado e verifica se a entrada dos dados é válida
+	let tipoVinho = prompt(
+		"Digite o tipo do vinho (Tinto, Branco ou Rosé):"
+	).toLowerCase();
+	typeWine(tipoVinho);
 
-// Solicita o Tipo de Vinho cadastrado e verifica se a entrada dos dados é válida
-let tipoVinho = prompt("Digite o tipo do vinho (Tinto, Branco ou Rosé):").toLowerCase();
-typeWine();
+	// Solicita a Safra do Vinho cadastrado e verifica se a entrada dos dados é válida
+	let safraVinho = prompt("Digite o ano da safra do vinho:");
+	yearWine(safraVinho);
+	ageWine(safraVinho);
 
+	// Solicita a Quantidade de Vinho cadastrada no Estoque e verifica se a entrada dos dados é válida
+	let quantidadeEstoque = prompt("Digite a quantidade em estoque do vinho:");
+	stockWine(quantidadeEstoque);
+	vinhosEstoqueBaixo += checkStock(quantidadeEstoque);
 
-// Solicita a Safra do Vinho cadastrado e verifica se a entrada dos dados é válida
-let safraVinho = prompt("Digite o ano da safra do vinho:");
-yearWine();
-ageWine();
+	// atualizações
+	vinhoMaisVelho = oldestWine(vinhoMaisVelho, safraVinho);
+	totalCadastros += 1;
+	msgAlerLog("Cadastro finalizado!");
 
-// Solicita a Quantidade de Vinho cadastrada no Estoque e verifica se a entrada dos dados é válida
-let quantidadeEstoque = prompt("Digite a quantidade em estoque do vinho:");
-stockWine();
+	// Verificação de saída
+	while (true) {
+		controller = prompt("Deseja continuar[s/n]?");
 
-
-// verificação de estoque
-if (parseInt(quantidadeEstoque) < 5) {
-	console.log("ESTOQUE BAIXO");
+		if (controller === "s" || controller === "n") {
+			console.log(" ");
+			break;
+		} else {
+			msgAlerLog("Digite uma opção válida");
+		}
+	}
+	if (controller === "n") {
+		break;
+	}
 }
 
-function checkStock(stock) {
-	if (stock !== null && stock !== "" && !isNaN(stock)) {
-		if (stock < 5) {
-			console.log(`ESTOQUE BAIXO: ${stock}`);
-			vinhosEstoqueBaixo++;
+// exibição dos dados finais
+msgAlerLog(
+	"Verifique no console as informações!",
+	`Idade do vinho mais velho: ${vinhoMaisVelho}`
+);
+msgAlerLog(null, `quantidade de cadastros: ${totalCadastros}`);
+msgAlerLog(
+	null,
+	`quantidade de vinhos com estoque baixo(menor que 5): ${vinhosEstoqueBaixo}`
+);
+
+function nameWine(name) {
+	while (true) {
+		if (isNull(name)) {
+			msgAlerLog("digite um valor não vazio para o vinho");
+			name = prompt("Digite o nome do vinho: ");
 		} else {
-			console.log(`Estoque atual: ${stock}`);
+			msgAlerLog(
+				"Nome cadastrado com sucesso! Veja os detalhes no console",
+				"Nome do vinho: " + name
+			);
+			break;
 		}
 	}
 }
-
-
-// Contabiliza o cadastro
-totalCadastros++;
-
-// Exibe totais
-alert("Cadastro finalizado!");
-alert("Total de cadastros realizados: " + totalCadastros);
-
+function typeWine(type) {
+	type = type.trim();
+	while (true) {
+		if (type === "tinto" || type === "branco" || type === "rosé") {
+			msgAlerLog(
+				"tipo do vinho cadastrado com sucesso! Veja os detalhes no console",
+				"Tipo do vinho: " + type
+			);
+			break;
+		} else {
+			msgAlerLog(`${type} não é uma das opcões de vinho`);
+			type = prompt("Digite o tipo do vinho (Tinto, Branco ou Rosé): ");
+		}
+	}
+}
+function yearWine(year) {
+	while (true) {
+		if (isNull(year) || parseInt(year) === NaN) {
+			msgAlerLog("Digite um valor válido para o ano");
+			year = prompt("Digite o ano da safra do vinho:");
+		} else {
+			msgAlerLog(
+				"Ano da Safra do vinho cadastrado com sucesso! Veja os detalhes no console",
+				"Ano da Safra: " + year
+			);
+			break;
+		}
+	}
+}
+function ageWine(year) {
+	let age = 2025 - year;
+	let msgAlert;
+	let msgConsole;
+	if (age <= 3) {
+		msgAlert = "Verifique a classificação da idade do vinho no console";
+		msgConsole = "Este é um Vinho Jovem: " + age + " anos";
+	} else if (age > 3 && age <= 15) {
+		msgAlert = "Verifique a classificação da idade do vinho no console";
+		msgConsole = "Este é um Vinho Amadurecido : " + age + " anos";
+	} else {
+		msgAlert = "Verifique a classificação da idade do vinho no console";
+		msgConsole = "Este é um Vinho Antigo : " + age + " anos";
+	}
+	msgAlerLog(msgAlert, msgConsole);
+}
+function stockWine(stock) {
+	while (true) {
+		if (isNull(stock) || parseInt(stock) === NaN) {
+			msgAlerLog("Digite um valor válido para a quantidade de estoque");
+			stock = prompt("Digite o estoque do vinho:");
+		} else {
+			msgAlerLog(
+				"Quantidade cadastrada com sucesso! Verificar o Console para classificação e detalhes da quantidade de estoque",
+				"estoque: " + stock
+			);
+			break;
+		}
+	}
+}
+function msgAlerLog(alertMsg = null, consoleMsg = null) {
+	if (alertMsg !== null) {
+		alert(alertMsg);
+	}
+	if (consoleMsg !== null) {
+		console.log(consoleMsg);
+	}
+}
+function checkStock(stock) {
+	stock = parseInt(stock);
+	if (stock < 5) {
+		console.log(`ESTOQUE BAIXO`);
+		return 1;
+	} else {
+		return 0;
+	}
+}
